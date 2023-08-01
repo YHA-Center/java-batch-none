@@ -47,12 +47,13 @@ Once we find an index i (after repeated doubling of i), we know that the element
                 int right = Math.min(i, n-1);
                 while(left <= right){
                     int mid = (left + right) / 2; // finding mid
-                    if(arr.get(mid) == x)
+                    if(arr.get(mid) == x){
                         return mid;
-                    else if (arr.get(mid) < x)
+                    }else if (arr.get(mid) < x){
                         left = mid + 1;
-                    else
+                    }else{
                         right = mid - 1;
+                    }
                 }
                 return -1;
             }
@@ -71,9 +72,8 @@ Once we find an index i (after repeated doubling of i), we know that the element
                 System.out.println("Element is present at index " + result);
             }
         }
-
     }
-    
 ```
-<br>
-Reference: [GeekforGeeks.org](https://geeksforgeeks.org);
+***
+
+Reference: [GeekforGeeks.org](https://geeksforgeeks.org)
