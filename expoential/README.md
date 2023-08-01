@@ -27,7 +27,7 @@ Once we find an index i (after repeated doubling of i), we know that the element
     <li>works better than Binary search for bounded arrays, and also when the element to be searched is closer to the first element</li>
 </ul>
 
-:two: Iterative Implementation (Second apporach)
+:two: **Iterative Implementation (Second apporach)**
 <br>
 ```
     import java.util.*;
@@ -75,3 +75,5 @@ Once we find an index i (after repeated doubling of i), we know that the element
     }
     
 ```
+<br>
+Reference: [GeekforGeeks.org](https://geeksforgeeks.org);
