@@ -36,10 +36,10 @@ be minimum when **m = sqrt(n)**. Therefore, the best step size is m = sqrt(n).
 ***
 
 ### Important Points:
--[x] Works only with sorted arrays.
--[x] The optimal size of a block to be jumped is (sqrt(n)). This makes the time complexity of Jump Search **(O(sqrt(n)))**. <br>
--[x] The time complexity of Jump Search is between Linear Search **(O(n))** and Binary Search **O(Log n)**.
--[x] Binary Search is better than Jump Search, but Jump Search has the advantage that we traverse back only once (Binary Search may require up to **O(Log n)**) jumps, consider a situation where the element to be searched is the smallest element or just bigger than the smallest). So, in a system where binary search is costly, we use Jump Search.
+- [x] Works only with sorted arrays.
+- [x] The optimal size of a block to be jumped is (sqrt(n)). This makes the time complexity of Jump Search **(O(sqrt(n)))**. <br>
+- [x] The time complexity of Jump Search is between Linear Search **(O(n))** and Binary Search **O(Log n)**.
+- [x] Binary Search is better than Jump Search, but Jump Search has the advantage that we traverse back only once (Binary Search may require up to **O(Log n)**) jumps, consider a situation where the element to be searched is the smallest element or just bigger than the smallest). So, in a system where binary search is costly, we use Jump Search.
 
 ***
 :bulb: References : [GeeksforGeeks.org](https://geeksforgeeks.org).
