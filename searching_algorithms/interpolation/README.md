@@ -5,7 +5,7 @@
 - **Interpolation Search** - An improvement over **Binary Search** for instance.
 
 
-```
+```agsl
     // The idea of formula is return higher value of pos
     // when element to be searched is closer to arr[hi]. And
     // smaller value when closer to arr[lo]
