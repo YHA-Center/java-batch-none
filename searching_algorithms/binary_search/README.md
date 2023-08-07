@@ -7,8 +7,8 @@
 
 ### **Conditions for when to apply Binary Search**
 
--[X] The data structure must be sorted
--[X] Access to any element of data structure takes constant time.
+- [X] The data structure must be sorted
+- [X] Access to any element of data structure takes constant time.
 
 ### **Algorithm Steps**
 
@@ -35,10 +35,28 @@ Auxiliary Space: O(1)
 2. **Recursive Binary Search Algorithm**
 ----
 Create a **recursive function** and compare the mid with the key.
-```agsl
-Time Complexity: 
-    - Best Case: O(log N)
-    - Average Case: O(log N)
-    - Worst Case: O(log N)
-Auxiliary Space: O(1) if the recursive call stack is considered then the auxiliary space will be O(log N).
+
+> Time Complexity: 
+- Best Case: O(log N) 
+- Average Case: O(log N) 
+- Worst Case: O(log N) 
+> Auxiliary Space: O(1) if the recursive call stack is considered then the auxiliary space will be O(log N).
+
+### Recursive Binary Search
+```java
+class BinarySearch{
+    int binarySearch(int arr[], int f, int l, int x){
+        if(l >= f){
+            int mid = f + (l-1) / 2;
+            if(arr[mid] == x)
+                return mid;
+            if(arr[mid] > x)
+                return binarySearch(arr, f, mid-1, x);
+            else
+                return binarySearch(arr, mid+1, l, x);
+        }
+        return -1;
+    }
+}
 ```
+
