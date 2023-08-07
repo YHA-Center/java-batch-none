@@ -29,7 +29,7 @@ Once we find an index i (after repeated doubling of i), we know that the element
 
 :two: **Iterative Implementation (Second apporach)**
 <br>
-```agsl
+```java
     import java.util.*;
     class Main{
         //exponential search function
