@@ -49,3 +49,31 @@ class GFG{
     }
 }
 ```
+
+### Binary Search Vs Ternary Search
+Time complexity of the binary search is more than
+the ternary search but it doesn't mean that 
+ternary search is better. In reality, the number
+of comparisons in ternary search much more which
+makes it slower than binary search.
+
+### <ins>Advantages</ins>
+- Ternary Search is more efficient than linear search and comparable to binary search
+- Number of comparisons get reduced.
+- Works well for large datasets.
+- Fits well with optimization problems.
+- Non-recursive algorithm, it doesn't require additioal memory to store function call stack. space efficient
+
+### <ins>Disadvantages</ins>
+- Only applicable to ordered lists or arrays.
+- Requires an in depth understanding of recursion.
+- Implementation is not easy.
+- Is not suitable for non-continuous function as it is dividing into 3 parts.
+
+### <ins>When to use:</ins>
+- When need to find the position of a specific value with a large ordered array or list
+- When need to find the maximum or minimum value of a function
+- When need an alternative algorithm for binary search with efficient time complexity.
+- When you are interested in reducing the number of comparisons.
+
+**References:** [GeekforGeek.org](https://geeksforgeeks.org).
