@@ -1,12 +1,13 @@
 package Models;
 
-public class Admin {
-	
+public class Seller {
+
 	private int id;
-	private String name;
 	private String email;
 	private String password;
 	private String phone;
 	private String image;
+	private String address;
+	private String name;
 	
 }
