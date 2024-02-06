@@ -10,6 +10,22 @@ public class Seller {
 	private String image;
 	private String address;
 	private String name;
+	private String business;
+	private String company;
+	
+	
+	public String getBusiness() {
+		return business;
+	}
+	public void setBusiness(String business) {
+		this.business = business;
+	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	}
 	
 	// and then generated getter and setter 
 		// methods in order to manipulate with database
