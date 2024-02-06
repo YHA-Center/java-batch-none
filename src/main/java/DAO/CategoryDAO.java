@@ -73,7 +73,7 @@ public class CategoryDAO {
 		return flag;
 	}
 	
-	// delete admin
+	// delete category
 	public boolean delete(int id) throws SQLException {
 		boolean flag = false;
 		String query = "DELETE FROM categories WHERE id = " + id;
@@ -83,7 +83,7 @@ public class CategoryDAO {
 		return flag;
 	}
 	
-	// update admin
+	// update category
 	public boolean update(Category category) throws SQLException {
 		boolean flag = false;
 		String query = "UPDATE admin SET name=? WHERE id=?";
