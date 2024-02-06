@@ -19,16 +19,17 @@ public class CustomerDAO {
 	// get all customer
 	public List<Customer> get() throws SQLException{
 		List<Customer> customers = new ArrayList<Customer>();
-		Customer customer = new Customer();
 		String query = "SELECT * FROM customers";
 		statement = con.createStatement();
 		ResultSet resultSet = statement.executeQuery(query);
 		while(resultSet.next()) {
+			Customer customer = new Customer();
 			customer.setId(resultSet.getInt("id"));
 			customer.setName(resultSet.getString("name"));
 			customer.setEmail(resultSet.getString("email"));
 			customer.setPhone(resultSet.getString("phone"));
 			customer.setImage(resultSet.getString("image"));
+			customer.setAddress(resultSet.getString("address"));
 			customers.add(customer);
 		}
 		return customers;
@@ -150,14 +151,15 @@ public class CustomerDAO {
 //		if(createFlag) System.out.println("created success");
 		
 		// testing get all customers
-//		List<Customer> customers = customerDAO.get();
-//		for(Customer user : customers) {
-//			System.out.println("Name " + user.getName());
-//			System.out.println("Email " + user.getEmail());
-//			System.out.println("Address " + user.getAddress());
-//			System.out.println("Image " + user.getImage());
-//			System.out.println("--------------------------");
-//		}
+		List<Customer> customers = customerDAO.get();
+		for(Customer user : customers) {
+			System.out.println("Name " + user.getName());
+			System.out.println("Email " + user.getEmail());
+			System.out.println("Address " + user.getAddress());
+			System.out.println("Image " + user.getImage());
+			System.out.println("--------------------------");
+		}
 	}
 
+	
 }
