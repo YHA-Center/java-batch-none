@@ -1,7 +1,7 @@
 package Models;
 
-public class Admin {
-	
+public class Customer {
+
 	// variable names which are same as names in database
 	private int id;
 	private String name;
@@ -9,6 +9,7 @@ public class Admin {
 	private String password;
 	private String phone;
 	private String image;
+	
 	
 	// and then generated getter and setter 
 	// methods in order to manipulate with database
