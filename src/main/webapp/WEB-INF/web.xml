@@ -9,6 +9,7 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+<<<<<<< HEAD
   
   <!-- Start Admin Controller -->
   	<servlet>
@@ -29,4 +30,6 @@
 	<!-- End of Admin Section -->
 	
   
+=======
+>>>>>>> branch 'master' of https://github.com/DevGeeksMyanmar/shop-dot-com.git
 </web-app>

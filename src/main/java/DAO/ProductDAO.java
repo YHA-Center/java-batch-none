@@ -39,7 +39,10 @@ public class ProductDAO {
 	}
 	
 	
+<<<<<<< HEAD
 	// testing method
+=======
+>>>>>>> branch 'master' of https://github.com/DevGeeksMyanmar/shop-dot-com.git
 	public static void main(String args[]) throws ClassNotFoundException, SQLException {
 		ProductDAO dao = new ProductDAO();
 	}

@@ -30,6 +30,7 @@ public class SellerDAO {
 			seller.setPhone(resultSet.getString("phone"));
 			seller.setImage(resultSet.getString("image"));
 			seller.setAddress(resultSet.getString("address"));
+<<<<<<< HEAD
 			seller.setCompany(resultSet.getString("company"));
 			seller.setBusiness(resultSet.getInt("business_id"));
 			sellers.add(seller);
@@ -114,6 +115,84 @@ public class SellerDAO {
 		stmt.setString(6, seller.getCompany());
 		stmt.setInt(7, seller.getBusiness());
 		stmt.setInt(8, seller.getId());
+=======
+			sellers.add(seller);
+		}
+		return sellers;
+	}
+	
+	// get by customer id
+	public Seller getById(int id) throws SQLException {
+		Seller seller = new Seller();
+		String query = "SELECT * FROM sellers WHERE id=" + id;
+		statement = con.createStatement();
+		resultset = statement.executeQuery(query);
+		if(resultset.next()) {
+			seller.setId(resultset.getInt("id"));
+			seller.setName(resultset.getString("name"));
+			seller.setEmail(resultset.getString("email"));
+			seller.setPhone(resultset.getString("phone"));
+			seller.setAddress(resultset.getString("address"));
+		}
+		return seller;
+	}
+	
+	// get by customer name
+	public Seller getByName(String name) throws SQLException {
+		Seller seller = new Seller();
+		String query = "SELECT * FROM sellers WHERE name = ?";
+		stmt = con.prepareStatement(query);
+		stmt.setString(1, name);
+		resultset = stmt.executeQuery();
+		if(resultset.next()) {
+			seller.setId(resultset.getInt("id"));
+			seller.setName(resultset.getString("name"));
+			seller.setEmail(resultset.getString("email"));
+			seller.setPhone(resultset.getString("phone"));
+			seller.setAddress(resultset.getString("address"));
+		}
+		return seller;
+	}
+	
+	// create new customer
+	public boolean create(Seller seller) throws SQLException {
+		boolean flag = false;
+		String query = "INSERT INTO sellers (name, email, password, phone, address, image)"
+				+ "VALUES (?,?,?,?,?,?)";
+		stmt = con.prepareStatement(query);
+		stmt.setString(1, seller.getName());
+		stmt.setString(2, seller.getEmail());
+		stmt.setString(3, seller.getPassword());
+		stmt.setString(4, seller.getPhone());
+		stmt.setString(5, seller.getAddress());
+		stmt.setString(6, seller.getImage());
+		int insertedRow = stmt.executeUpdate();
+		if(insertedRow > 0) flag = true;
+		return flag;
+	}
+	
+	// delete customer
+	public boolean delete(int id) throws SQLException {
+		boolean flag = false;
+		String query = "DELETE FROM sellers WHERE id = " +id;
+		statement = con.createStatement();
+		int deletedRow = statement.executeUpdate(query);
+		if(deletedRow > 0) flag = true;
+		return flag;
+	}
+	
+	// update customer
+	public boolean update(Seller seller) throws SQLException {
+		boolean flag = false;
+		String query = "UPDATE sellers SET name=?, email=?, phone=?, address=?, image=? WHERE id=?";
+		stmt = con.prepareStatement(query);
+		stmt.setString(1, seller.getName());
+		stmt.setString(2, seller.getEmail());
+		stmt.setString(3, seller.getPhone());
+		stmt.setString(4, seller.getAddress());
+		stmt.setString(5, seller.getImage());
+		stmt.setInt(6, seller.getId());
+>>>>>>> branch 'master' of https://github.com/DevGeeksMyanmar/shop-dot-com.git
 		int updatedRow = stmt.executeUpdate();
 		if(updatedRow > 0) flag = true;
 		return flag;

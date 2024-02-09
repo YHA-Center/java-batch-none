@@ -10,6 +10,7 @@ public class Seller {
 	private String image;
 	private String address;
 	private String name;
+<<<<<<< HEAD
 	private int business;
 	private String company;
 	
@@ -18,6 +19,16 @@ public class Seller {
 		return business;
 	}
 	public void setBusiness(int business) {
+=======
+	private String business;
+	private String company;
+	
+	
+	public String getBusiness() {
+		return business;
+	}
+	public void setBusiness(String business) {
+>>>>>>> branch 'master' of https://github.com/DevGeeksMyanmar/shop-dot-com.git
 		this.business = business;
 	}
 	public String getCompany() {
