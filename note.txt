@@ -1,0 +1,107 @@
+Model + View + Controller
+
+Model -> database
+
+View -> Ui
+(user interface)
+
+controller -> HTTP cycle
+-> manage api
+   - POST, PUT, DELETE, GET, UPDATE
+
+
+
+
+view [ui html,css,js, frontend-framework] ---->
+[(web.php) --> Controller (HTTP)] ------>
+[Model (Database) [migration --> db]]
+
+
+
+Model -> DB CRUD (Create, Read, Update, Delete)
+1. Database Server <--- Laravel/PHP CRUD
+2. migration
+
+URI - /product/1 (Uniform Resource Identifier)
+URL -> https://github.com/product/1
+
+100 - 199 (Informational)
+200 - 299 (Success)
+300 - 399 (Redirect)
+400 - 499 (Client Error)
+500 - 599 (Server Error)
+
+-----------------------------------------
+
+Create Model, Migration, Controller
+==================================
+- php artisan make:model ModelName -mc
+- php artisan make:model ModelName -m
+- php artisan make:model ModelName -c
+
+- php artisan make:migration create_tbname_tables (eg, create_users_tables)
+- php artisan migrate
+- php artisan migrate:rollback (undo)
+- php artisan migrate:refresh (undo all)
+- php artisan migrate:status
+
+- php artisan migrate:fresh
+
+- php artisan make:controller ControllerName
+
+Factory and Seeder
+==================
+- php artisan make:factory ModelNameFactory
+(eg, php artisan make:factory CategoryFactory)
+
+- php artisan make:seeder ModelNameSeeder
+(eg, php artisan make:seeder CategorySeeder)
+
+Run (Factory (Define) > Seeder (Generate) > Database (Host))
+====
+- php artisan db:seed
+
+- php artisan db:seed --class=ModelNameSeeder
+(eg, php artisan db:seed --class=CategorySeeder)
+
+
+Yield, Stack, Push, Section
+===========================
+
+1. @yield = @section() ... @endsection
+2. @stack = @push() ... @endpush
+
+
+ModelName::get() -> return obj (eg, Category::get() --> $row.id, $row.name)
+ModelName::all() -> return collection (eg, Category::all() --> $row['id'], $row['name'])
+
+
+FORM
+=====
+- POST method
+- @csrf (token)
+- name attribute
+
+Query Builder
+==============
+->all() ==> return collection ($category[0]['name'])
+->get() ==> return collection [{}] ($category[0].name)
+->first() ==> return first element {} ($category->name)
+->last() ==> return last element {}
+->where('id', '<', '5')->get();
+->orderBy('updated_at', 'desc')->get();
+->where('id', '<', '6')->where('address', '=', 'yangon')->get();
+// and where "SELECT * FROM ... WHERE id=1 AND address=yangon
+
+->get()->last(); // get last element
+->select('title', 'price')->get()
+->select('*')->get()
+->get()->random()
+->where('address', 'yangon')->get()->random();
+->orwhere('id', '<', 5)->orwhere('address', 'yangon')->get()
+// or where "SELECT * FROM ... WHERE id<5 or address=yangon;
+
+->whereBetween('price', [300, 500])->get()
+->select('id', 'price')->whereBetween('price', [3000,9000])->orderBy('price', 'asc')->get()
+->select('price')->get()->toArray();
+->select('address')->groupBy('address')->get()->toArray()
