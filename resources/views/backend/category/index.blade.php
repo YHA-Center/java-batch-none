@@ -15,7 +15,7 @@
             <a href="{{ route('category.create') }}" class="btn btn-primary">Create</a>
         </div>
         <div class="card-body">
-            <table class="" style="">
+            <table class="table table-responsive" width="100%">
                 <tr class="p-3">
                     <th>NO.</th>
                     <th>Category Name</th>

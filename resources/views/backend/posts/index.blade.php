@@ -1,33 +1,61 @@
+@extends('layouts.backend')
 
+@section('content')
+<div class="container-fluid p-4">
 
-1. Create Model, migration, and controller for POST
-- php artisan make:mdoel Post -mc
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
 
-2. Update the migration file
-- title (String)
-- description (longText)
-- category_id (integer)
-- image (longText)
-- user_id (integer)
-
-3. Model
-- fillable = [title, description, category_id, image, user_id]
-
-4. Controller
-- function index() -> return view('backend.posts.index')
-- function create()
-- function store(Request $request)
-- function destroy($id)
-- function edit($id)
-- function update(Request $request, $id)
-- function getById($id)
-
-5. web.php
-(PostController::class)
-- Route::get(/post/list) = index (name = post.home)
-- Route::get(/post/create) = create (name = post.create)
-- Route::post(/post/store) = store (name = post.store)
-- Route::get(/post/destroy/{id}) = destroy (name = post.destroy)
-- Route::get(/post/edit/{id}) = edit (name = post.edit)
-- Route::post(/post/update/{id}) = update (name = post.update)
-- Route::get(/post/get/{id}) = getById (name = post.getById)
+    <div class="card">
+        <div class="card-header">
+            <h3>Post List</h3>
+            <a href="{{ route('post.create') }}" class="btn btn-primary">Create</a>
+        </div>
+        <div class="card-body">
+            <table class="table  table-bordered" width="100%" style="">
+                <tr class="p-3">
+                    <th>No.</th>
+                    <th>Title</th>
+                    <th>Category Name</th>
+                    <th>Created Date</th>
+                    <th>Actions</th>
+                </tr>
+                <tbody>
+                    @foreach($posts as $row)
+                    <tr >
+                        <td>{{ $row->id }}</td>
+                        <td>{{ $row->title }}</td>
+                        <td>{{ $row->Category->name }}</td>
+                        <td>{{ date('d/m/Y', strtotime($row->created_at)) }}</td>
+                        <td>
+                            {{-- Detail button  --}}
+                            <a href="{{ route('post.edit', $row->id) }}" class="btn btn-secondary btn-icon-split btn-sm">
+                                <span class="icon">
+                                    <i class="fas fa-file"></i>
+                                </span>
+                                <span class="text">Detail</span>
+                            </a>
+                            <a href="{{ route('post.edit', $row->id) }}" class="btn btn-primary btn-icon-split btn-sm">
+                                <span class="icon">
+                                    <i class="fas fa-pen"></i>
+                                </span>
+                                <span class="text">Edit</span>
+                            </a>
+                            <a href="{{ route('post.delete', $row->id) }}" class="btn btn-danger btn-sm btn-icon-split">
+                                <span class="icon">
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                                <span class="text">Delete</span>
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
