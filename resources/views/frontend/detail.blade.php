@@ -6,6 +6,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-8">
+            <a href="{{ route('user.home') }}">Back</a>
             {{-- Post Content  --}}
             <article>
                 {{-- Post Header  --}}
@@ -102,7 +103,7 @@
                 <div class="card-body">
                     @foreach ($latest_post as $post)
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('DetailPage', $post->id) }}" class="text-primary text-decoration-none text-bold">
+                            <a href="" class="text-primary text-decoration-none text-bold">
                                 {{ $post->title }}
                             </a>
                             <small class="text-muted">

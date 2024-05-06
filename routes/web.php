@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
@@ -11,6 +12,8 @@ Route::get('/', function () {
 Route::get('/admin', function() {
     return view('layouts.backend');
 });
+
+// admin
 
 # Category Controller session
 Route::get('/category', [CategoryController::class, 'index'])->name('category.home');
@@ -28,6 +31,11 @@ Route::get('/post/destroy/{id}', [PostController::class, 'destroy'])->name('post
 Route::get('/post/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
 Route::post('/post/update/{id}', [PostController::class, 'update'])->name('post.update');
 Route::get('/post/get/{id}', [PostController::class, 'get'])->name('post.get');
+
+// user
+Route::get('/home', [UserController::class, 'index'])->name('user.home');
+Route::get('/blog/get/{id}', [UserController::class, 'get'])->name("blog.get");
+Route::get('/blog/category/{id}', [UserController::class, 'getByCategory'])->name('blog.category');
 
 // name('category.home') > {{ route('category.home') }}
 // Route::get('category', ....) > {{ url('category') }}

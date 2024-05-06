@@ -57,7 +57,7 @@ class PostController extends Controller
             'title' => 'required|min:3|string',
             'category' => 'required',
             'description' => 'required|min:3|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:1024'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp'
         ];
         Validator::make($request->all(), $rule)->validate(); // rule -> array formate
     }
