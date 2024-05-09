@@ -14,7 +14,7 @@
                     {{-- Post Title  --}}
                     <h1 class="fw-bolder mb-1">{{ $post->title }}</h1>
                     {{-- Post Meta Content  --}}
-                    <div class="text-muted fst-italic mb-2">Posted on {{ $post->created_at->diffForHumans() }}</div>
+                    <div class="text-muted fst-italic mb-2">Posted on {{ $post->created_at->diffForHumans() }} by <b>{{ $post->User->name }}</b></div>
                     {{-- Post Categories  --}}
                     <a href="" class="badge bg-secondary text-decoration-none link-light">
                         {{ $post->Category->name }}

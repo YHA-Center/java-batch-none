@@ -12,8 +12,16 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     </head>
     <body>
+
         <!-- Responsive navbar-->
         @include('frontend.components.navbar')
+
+        @if (session('error'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
 
         @yield('content')
 

@@ -8,7 +8,7 @@
 <!-- Page content-->
 <div class="container">
     <div class="row">
-        @if (!request()->routeIs('blog.category'))
+        @if (request()->routeIs('user.home'))
         <div class="col-12">
             <h3 class="mb-2">Feature Post</h3>
         </div>
@@ -16,12 +16,13 @@
         <!-- Blog entries-->
         <div class="col-lg-8">
             <!-- Featured blog post-->
-            @if (!request()->routeIs('blog.category'))
+            @if (request()->routeIs('user.home'))
+            @if($feature_post != null)
             <div class="card mb-4">
                 <a href="#!"><img class="card-img-top" height="300" src="{{ asset($feature_post->cover) }}" alt="..." /></a>
                 <div class="card-body">
                     <div class="small text-muted">
-                        {{ $feature_post->created_at->diffForHumans() }}
+                        Post by <b>{{ $feature_post->User->name }}</b> | {{ $feature_post->created_at->diffForHumans() }}
                     </div>
                     <h2 class="card-title">{{ $feature_post->title }}</h2>
                     <p class="card-text">
@@ -31,8 +32,10 @@
                 </div>
             </div>
             @endif
+            @endif
             <!-- Nested row for non-featured blog posts-->
             <div class="row">
+                {{-- check category route  --}}
                 @if (request()->routeIs('blog.category'))
                 <div class="col-12 mb-2">
                     <a href="{{ route('user.home') }}">Back</a>
@@ -45,6 +48,7 @@
                     @endif
                 </div>
                 @else
+                {{-- Post title  --}}
                 <div class="col-12 mb-2">
                     <h3>Post</h3>
                 </div>
@@ -56,7 +60,7 @@
                     <div class="card mb-4">
                         <a href="#!"><img class="card-img-top" height="180" src="{{ asset($post->cover) }}" alt="..." /></a>
                         <div class="card-body">
-                            <div class="small text-muted"> {{  $post->created_at->diffForHumans() }} </div>
+                            <div class="small text-muted"> Post by <b>{{ $post->User->name }}</b> / {{  $post->created_at->diffForHumans() }} </div>
                             <h2 class="card-title h4"> {{ $post->title }} </h2>
                             <p class="card-text">
                                 <?= Str::words($post->description, 15, '...') ?>
@@ -72,16 +76,27 @@
         </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
+
             <!-- Search widget-->
             <div class="card mb-4">
                 <div class="card-header">Search</div>
                 <div class="card-body">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                        <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                    </div>
+                    <form action="{{ route('blog.search') }}" method="POST" class="d-flex gap-2">
+                        @csrf
+                        <div class="input-group">
+                            <input class="form-control" name="searchTerm" @if (request()->routeIs('blog.search'))
+                                value="{{ $term }}"
+                            @endif
+                             type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                            <button class="btn btn-primary" id="button-search" type="sumbit">Go!</button>
+                        </div>
+                        @if (request()->routeIs('blog.search'))
+                            <a href="{{ route('user.home') }}" class="btn-danger btn">Clear</a>
+                        @endif
+                    </form>
                 </div>
             </div>
+
             <!-- Categories widget-->
             <div class="card mb-4">
                 <div class="card-header">Categories</div>

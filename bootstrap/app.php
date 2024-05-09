@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // global, route, api
+        $middleware->alias([
+            'isLogin' => \App\Http\Middleware\UserAuth::class, // key define => class path
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

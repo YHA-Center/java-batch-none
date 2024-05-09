@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
     // index page
     public function index(){
-        $posts = Post::get();
+        $posts = Post::where('user_id', Auth::user()->id)->get();
         return view('backend.posts.index', compact('posts'));
     }
 
@@ -41,7 +42,7 @@ class PostController extends Controller
             'category_id' => $request->category,
             'description' => $request->description,
             'cover' => $path,
-            'user_id' => 1,
+            'user_id' => Auth::user()->id,
         ];
         // store
         if(Post::create($data)){
