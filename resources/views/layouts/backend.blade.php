@@ -31,44 +31,63 @@
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+    <div class="container-fluid p-1 p-md-4">
+        <div class="row">
 
-        <!-- Sidebar -->
-        @include('backend.part.sidebar')
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                @include('backend.part.navbar')
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                @yield('content')
-                <!-- /.container-fluid -->
-
+            {{-- back button  --}}
+            <div class="col-12">
+                <a href="{{ route('user.home') }}" class="btn btn-link">Back</a>
             </div>
-            <!-- End of Main Content -->
 
-            <!-- Footer -->
-            @include('backend.part.footer')
-            <!-- End of Footer -->
+            <div class="col-12 col-md-4">
+                {{-- profile  --}}
+                <div class="card">
+                    <div class="card-header">Profile</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                {{-- for image  --}}
+                            </div>
+                            <div class="col-4 mb-3">Username</div><div class="col-8">{{ Auth::user()->name }}</div>
+                            <div class="col-4 mb-3">Email</div><div class="col-8">{{ Auth::user()->email }}</div>
+                            <div class="col-4 mb-3">Created on</div><div class="col-8">{{ Auth::user()->created_at->diffForHumans() }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                {{-- title  --}}
+                <div class="row">
+                    <div class="col-4">
+                        <a href="" class="btn btn-primary">New Post</a>
+                    </div>
+                    <div class="col-8">
 
+                    </div>
+                </div>
+
+                {{-- posts list  --}}
+                <div class="row mt-4">
+                    @foreach ($posts as $post)
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <!-- Blog post-->
+                            <div class="card mb-4">
+                                <a href="#!"><img class="card-img-top" height="180" src="{{ asset($post->cover) }}" alt="..." /></a>
+                                <div class="card-body">
+                                    <div class="small text-muted d-flex justify-content-between "> <span>Post by <b>{{ $post->User->name }}</b></span> <span>{{  $post->created_at->diffForHumans() }}</span> </div>
+                                    <h2 class="card-title h4"> {{ $post->title }} </h2>
+                                    <p class="card-text">
+                                        <?= Str::words($post->description, 15, '...') ?>
+                                    </p>
+                                    <a class="btn btn-primary" href="{{ route('blog.get', $post->id) }}">Read more →</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
-        <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -91,21 +110,10 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    {{-- <script src="{{ asset('asset/vendor/jquery/jquery.min.js') }}"></script> --}}
     <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    {{-- <script src="{{ asset('asset/vendor/jquery-easing/jquery.easing.min.js') }}"></script> --}}
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('asset/js/sb-admin-2.min.js') }}"></script>
-
-    <!-- Page level plugins -->
-    {{-- <script src="{{ asset('asset/vendor/chart.js/Chart.min.js') }}"></script> --}}
-
-    <!-- Page level custom scripts -->
-    {{-- <script src="{{ asset('asset/js/demo/chart-area-demo.js') }}"></script> --}}
-    {{-- <script src="{{ asset('asset/js/demo/chart-pie-demo.js') }}"></script> --}}
 
 </body>
 

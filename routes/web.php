@@ -31,7 +31,7 @@ Route::middleware(['isLogin'])->group(function() { // check login middleware
     Route::post('/post/update/{id}', [PostController::class, 'update'])->name('post.update');
     Route::get('/post/get/{id}', [PostController::class, 'get'])->name('post.get');
     // profile
-    Route::get('/profile', [HomeController::class, 'profile'])->name('user.profile'); // profile page
+    Route::get('/profile/home', [HomeController::class, 'profile'])->name('user.profile'); // profile page
     Route::post('/profile/update', [HomeController::class, 'update'])->name('user.update');
 });
 

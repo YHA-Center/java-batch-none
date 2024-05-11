@@ -1,8 +1,8 @@
 
 
-<nav class="navbar navbar-expand-lg navbar-primary bg-white shadow ">
+<nav class="navbar navbar-expand-lg navbar-primar shadow">
     <div class="container">
-        <a class="navbar-brand" href="#!">My Blog</a>
+        <a class="navbar-brand text-uppercase" href="{{ route('user.home') }}">Bloggy</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             {{-- <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -17,13 +17,15 @@
                 @guest
                     @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link btn btn-sm btn-dark px-4 text-white" href="{{ route('login') }}">
+                                {{ __('Login') }}
+                            </a>
                         </li>
                     @endif
 
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link btn btn-sm btn-primary px-4 text-white mx-2" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
@@ -33,10 +35,10 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end p-1" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item mb-2" href="{{ route('post.list') }}">
+                            <a class="dropdown-item mb-2" href="{{ route('user.profile') }}">
                                 Profile
                             </a>
-                            <a class="dropdown-item bg-danger rounded text-white" href="{{ route('logout') }}"
+                            <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}

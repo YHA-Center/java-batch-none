@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,8 @@ class HomeController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        return view('backend.profile.edit', compact('user'));
+        $posts = Post::where('user_id', Auth::user()->id)->paginate(6);
+        return view('layouts.backend', compact('user', 'posts'));
     }
 
     // update profile
