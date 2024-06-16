@@ -19,7 +19,8 @@ class PostController extends Controller
     // create page
     public function create(){
         $categories = Category::get();
-        return view('backend.posts.create', compact('categories'));
+        $user = Auth::user();
+        return view('backend.components.post_create', compact('categories', 'user'));
     }
 
     // 1. validate -> Validator::make($request, $rule, $message)->validate();
@@ -47,7 +48,7 @@ class PostController extends Controller
         // store
         if(Post::create($data)){
             // return
-            return redirect()->route('post.list')->with('success', 'Created new post');
+            return redirect()->route('user.profile')->with('success', 'Created new post');
         }else{
             return view('errors.500Page');
         }

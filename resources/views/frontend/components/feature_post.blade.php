@@ -12,7 +12,10 @@
                 <p class="card-text">
                     <?= Str::words($feature_post->description, 20, '...') ?>
                 </p>
-                <a class="btn btn-primary" href="{{ route('blog.get', $feature_post->id) }}">Read more →</a>
+                <div class="flex items-center justify-start">
+                    <div class="fa fa-arrow"></div>
+                    <a class="btn btn-primary" href="{{ route('blog.get', $feature_post->id) }}">Read more →</a>
+                </div>
             </div>
         </div>
     @else

@@ -16,7 +16,7 @@ class UserController extends Controller
         $posts = Post::paginate(4);  // posts
         $categories = Category::all();  // categories
         $feature_post = Post::latest()->first(); // feature_post
-        $latest_post = Post::latest('created_at')->take(5)->get(); // latest_post
+        $latest_post = Post::latest('created_at')->take(4)->get(); // latest_post
         return view('frontend.index', compact('posts', 'categories', 'feature_post', 'latest_post', 'users'));
     }
 
@@ -24,7 +24,7 @@ class UserController extends Controller
     public function get($id)
     {
         $post = Post::find($id);
-        $latest_post = Post::latest('created_at')->take(5)->get();
+        $latest_post = Post::latest('created_at')->take(4)->get();
         return view('frontend.detail', compact('post', 'latest_post'));
     }
 
@@ -34,7 +34,7 @@ class UserController extends Controller
         $posts = Post::where('category_id', $id)->paginate(4);
         $categories = Category::all();
         $category = Category::where('id', $id)->first();
-        $latest_post = Post::latest('created_at')->take(5)->get();
+        $latest_post = Post::latest('created_at')->take(4)->get();
         return view('frontend.index', compact('posts', 'categories', 'latest_post', 'category'));
     }
 

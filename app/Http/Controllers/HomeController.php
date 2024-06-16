@@ -36,7 +36,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $posts = Post::where('user_id', Auth::user()->id)->paginate(6);
-        return view('layouts.backend', compact('user', 'posts'));
+        return view('backend.components.posts', compact('user', 'posts'));
     }
 
     // update profile

@@ -23,7 +23,7 @@
 
         @if (count($posts) == 0)
             <div class="alert alert-warning">
-                There is no posts.
+                Not found!
             </div>
         @endif
 

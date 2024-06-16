@@ -14,7 +14,7 @@
         </div>
         @endif
         <!-- Blog entries-->
-        <div class="col-lg-8">
+        <div class="col-lg-8 px-3">
             {{-- feature post goes here  --}}
             @include('frontend.components.feature_post')
             {{-- posts  --}}
@@ -46,8 +46,6 @@
             <!-- Categories widget-->
             @include('frontend.components.category')
 
-            <!-- Side widget-->
-            @include('frontend.components.latest_posts')
         </div>
     </div>
 </div>

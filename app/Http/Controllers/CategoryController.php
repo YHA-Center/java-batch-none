@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -25,7 +26,9 @@ class CategoryController extends Controller
 
     // create page
     public function create(){
-        return view('backend.category.create');
+        $user = Auth::user();
+        $categories = Category::paginate(10);
+        return view('backend.components.create_category', compact('user', 'categories'));
     }
 
     // store data
@@ -46,22 +49,14 @@ class CategoryController extends Controller
         // 2. form data -> array format
         $data = [
             'name' => $request->category_name,
+            'status' => 1,
         ];
 
         Category::create($data); // 3. store to database
         // return to view
-        return redirect()->route("category.home")
+        return redirect()->back()
         ->with('success', 'Created new category');
     }
-
-    // protected function makeValidation(Request $request){
-    //     // Validator::make($request->all(), rule, message)->validate(); // syntax
-    //     // rule -> array format
-    //     // message -> array format
-    //     Validator::make($request->all(), [
-    //         'category_name' => 'required',
-    //     ])->validate();
-    // }
 
 
     // delete category
@@ -75,8 +70,8 @@ class CategoryController extends Controller
         $category = Category::find($id); // 1. search / find
         // dd($category->toArray());
         if(isset($category)){
-            $category->delete(); // 2. delete
-            return redirect()->route('category.home') // 3. return
+            $category->update(['status' => -1]); // 2. delete
+            return redirect()->back()// 3. return
             ->with('success', 'Delete success'); // session
         }else{
             return view('errors.500Page');
