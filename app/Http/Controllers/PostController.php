@@ -54,6 +54,7 @@ class PostController extends Controller
         }
     }
 
+    // make post validation before uploading
     private function validatePost(Request $request){
         $rule = [
             'title' => 'required|min:3|string',
@@ -64,7 +65,7 @@ class PostController extends Controller
         Validator::make($request->all(), $rule)->validate(); // rule -> array formate
     }
 
-    // get
+    // get the post / read the post
     public function get($id){
         // get row from database
         $post = Post::find($id);
@@ -75,7 +76,7 @@ class PostController extends Controller
         }
     }
 
-    // edit
+    // edit thg post
     public function edit($id){
         // Model - Category , Post where id
         $categories = Category::get();
@@ -83,7 +84,7 @@ class PostController extends Controller
         return view('backend.posts.edit', compact('categories', 'post'));
     }
 
-    // update
+    // update the post
     public function update(Request $request, $id){
         // validation
         Validator::make($request->all(), [
@@ -116,7 +117,7 @@ class PostController extends Controller
         return redirect()->route('post.list')->with('success', 'Success Updated');
     }
 
-    // destroy
+    // destroy the post
     public function destroy($id){
         // search
         $post = Post::find($id);

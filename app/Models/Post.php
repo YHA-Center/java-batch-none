@@ -24,4 +24,12 @@ class Post extends Model
     public function User(){
         return $this->belongsTo('App\Models\User');
     }
+
+    public function Comment(){
+        return $this->belongsTo('App\Models\Comment');
+    }
+
+    public function Popular(){
+        return $this->belongsTo('App\Models\Popular');
+    }
 }
